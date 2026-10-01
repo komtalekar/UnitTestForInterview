@@ -6,6 +6,23 @@ namespace CodepadTestSample
 {
     public class Calculator
         {
+
+           private readonly IInventoryRepo _inventoryRepo;
+
+           public Calculator(IInventoryRepo inventoryRepo)
+           {
+               _inventoryRepo = inventoryRepo;
+            }
+
+            public bool IsStockRunningLow(int productId)
+            {
+                var currentStock = _inventoryRepo.GetStock(productId);
+    
+                return currentStock < 10;
+            }
+
+        
+        
             public double CalculateTotal(double price, int quantity)
             {
                 return price * quantity;
